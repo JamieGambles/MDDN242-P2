@@ -1,19 +1,20 @@
 /*
  * Here are some things you can edit
  */
-//const colorBack    = "#f2edeb";
-//const colorBack    = "#859A89";
-const colorBack    = "#E6E3D0";
+const colorBack    = "#191919";
 const colorFront   = "#199cff";
 const colorLines   = "#000090";
+// const colorBack    = "#E6E3D0";
+// const colorFront   = "#199cff";
+// const colorLines   = "#000090";
 
 /* 
  * do not edit this rest of this file, instead edit the letter
  * drawing code in draw_letters.js
  */
 
-const canvasWidth = 960;
-const canvasHeight = 500;
+const canvasWidth = 1080;
+const canvasHeight = 1080;
 
 // these variables are used for animation
 let soloCurLetter = "B";
@@ -98,8 +99,7 @@ const interpolation_is_on = (typeof interpolate_letter === "function")
 
 function setup () {
   // create the drawing canvas, save the canvas element
-  main_canvas = createCanvas(canvasWidth, canvasHeight);
-  main_canvas.parent('canvasContainer');
+createCanvas(canvasWidth, canvasHeight);
 
   let now = millis();
   lastKeyPressedTime = now;
@@ -219,10 +219,11 @@ function draw () {
 
   background(colorBack);
   fill(colorFront);
-  stroke(95, 52, 8);
+
+  let widthUnit = width/960;
 
   // shorthand variables to allow margin
-  var o = 20
+  var o = 50 * widthUnit;
   var w2 = width - 2 * o
   var h2 = height - 2 * o
   for(var i=0; i<8; i++) {
@@ -235,7 +236,7 @@ function draw () {
       chosenCurAnimationFrame[i] = chosenCurAnimationFrame[i] + 1;
     }
     var obj = computeCurrentChosenChar(i);
-    drawFromDataObject(o + i*w2/8.0, o + h2/2.0 - 120, 1.0, obj)
+    drawFromDataObject(o + i*w2/8.0, o + h2/2.0 - (o*2), 1 * widthUnit, obj)
   }
 }
 
@@ -244,22 +245,4 @@ function swapExhibitLetter(n, c, frameDelay) {
   chosenLetters[n] = c;
   chosenIsAnimating[n] = true;
   chosenCurAnimationFrame[n] = 0 - frameDelay;
-}
-
-function keyTyped() {
-  if (key == '!') {
-    saveBlocksImages();
-  }
-  else if (key == '@') {
-    saveBlocksImages(true);
-  }
-  else {
-    lastKeyPressedTime = millis();
-    if(isSwappingWords) {
-      isSwappingWords = false;
-    }
-    upper_key = key.toUpperCase();
-    swapExhibitLetter(curChosenLetter, upper_key, 0);
-    curChosenLetter = (curChosenLetter + 1) % 8;  
-  }
 }

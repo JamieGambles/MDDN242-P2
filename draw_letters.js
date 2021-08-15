@@ -1,7 +1,10 @@
 // Declare and apply the 3 colours used in my alphabet
-let col3 = "#F39B1F"
-let col2 = "#123239"
-let col1 = "#D35627"
+let col3 = "#c8c8c8"
+let col2 = "#969696"
+let col1 = "#323232"
+// let col3 = "#F39B1F"
+// let col2 = "#123239"
+// let col1 = "#D35627"
 let colorFront1 = col1;
 let colorFront2 = col2;
 let colorFront3 = col3;
